@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { Category } from "../models/Category";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectCounter } from "../slices/counterSlice";
+import { Category } from "../models/Category";
 const NavBar = () => {
 
     const [categories, setCategories] = React.useState<Category[]>([]);
@@ -15,6 +17,8 @@ const NavBar = () => {
     React.useEffect( () => {
         loadCategories();
     }, []);
+
+    const pippo = useSelector(selectCounter);
 
     return (
         <nav className="navbar navbar-expand-lg bg-light">
@@ -42,6 +46,7 @@ const NavBar = () => {
                 <ul className="navbar-nav">
                     <li>
                         <NavLink className="nav-link" to="/cart">Carrello</NavLink>
+                        { pippo }
                     </li>
                 </ul>
                 <form className="d-flex" role="search">
